@@ -1,0 +1,22 @@
+#include <Adafruit_DHT.h>
+
+DHT dht(A0, DHT11);
+
+int LED = D7;
+
+void setup() {
+    pinMode(LED, OUTPUT);
+    dht.begin();
+}
+
+void loop() {
+    digitalWrite(LED, HIGH);
+    float temp = dht.getTempCelcius();
+  Particle.publish("temp", String(temp), PRIVATE);
+  //delay(30000);
+  delay(30000);
+  digitalWrite(LED, LOW);
+  //delay(30000);
+  delay(30000);
+  // Wait for 30 seconds
+}
